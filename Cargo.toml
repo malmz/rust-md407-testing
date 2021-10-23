@@ -1,0 +1,46 @@
+[package]
+authors = ["Carl Malmz <callem217@gmail.com>"]
+edition = "2018"
+readme = "README.md"
+name = "md407-test"
+version = "0.1.0"
+
+[dependencies]
+bxcan = "0.5.0"
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+cortex-m-semihosting = "0.3.7"
+heapless = "0.7.0"
+nb = "1.0.0"
+panic-halt = "0.2.0"
+
+# stm32f4 = "0.14.0"
+stm32f4xx-hal = { git = "https://github.com/stm32-rs/stm32f4xx-hal", features = [
+    "rt",
+    "stm32f407",
+    "can",
+] }
+
+# Uncomment for the panic example.
+# panic-itm = "0.4.1"
+
+# Uncomment for the allocator example.
+# alloc-cortex-m = "0.4.0"
+
+# Uncomment for the device example.
+# Update `memory.x`, set target to `thumbv7em-none-eabihf` in `.cargo/config`,
+# and then use `cargo build --examples device` to build it.
+# [dependencies.stm32f3]
+# features = ["stm32f303", "rt"]
+# version = "0.7.1"
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "md407-test"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true      # symbols are nice and they don't increase the size on Flash
+lto = true        # better optimizations
